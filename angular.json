@@ -27,7 +27,11 @@
             "styles": [
               "src/styles.css"
             ],
-            "scripts": []
+            "scripts": [
+              "node_modules/phaser/dist/phaser.min.js",
+              "node_modules/phaser/dist/phaser.js",
+              "node_modules/phaser-matter-collision-plugin/dist/phaser-matter-collision.js"
+            ]
           },
           "configurations": {
             "production": {
@@ -89,7 +93,11 @@
             "styles": [
               "src/styles.css"
             ],
-            "scripts": []
+            "scripts": [
+              "node_modules/phaser/dist/phaser.min.js",
+              "node_modules/phaser/dist/phaser.js",
+              "node_modules/phaser-matter-collision-plugin/dist/phaser-matter-collision.js"
+            ]
           }
         }
       }
