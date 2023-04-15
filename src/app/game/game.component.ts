@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import Phaser from 'phaser';
 import { PhaserMatterCollisionPlugin } from 'src/assets/phaser-matter-collision.js';
+import Enemy from './Enemy.js';
 import Player from './player.js';
 import Resource from './resource.js';
 
@@ -48,13 +49,16 @@ class MainScene extends Phaser.Scene {
   private player!: Player;
   private keys!:any;
   private map!: Phaser.Tilemaps.Tilemap;
+  private enemies!:any;
   constructor() {
     super({ key: 'MainScene' });
+    this.enemies =[];
     
   }
   preload() {
     Player.preload(this);
     Resource.preload(this);
+    Enemy.preload(this);
     this.load.image('tiles', 'assets/tilesets/RPG Nature Tileset.png');
     this.load.tilemapTiledJSON('map', 'assets/map.json');
   }
@@ -79,6 +83,7 @@ class MainScene extends Phaser.Scene {
    this.matter.world.convertTilemapLayer(layer1);
 
    this.map.getObjectLayer('Resources').objects.forEach(resource=> new Resource({scene:this, resource}));;
+   this.map.getObjectLayer('Enemies').objects.forEach(enemy=> this.enemies.push(new Enemy({scene:this, enemy})));;
 
 
    this.player = new Player({scene:this,x:100,y:100,texture:"player"});
@@ -89,6 +94,7 @@ class MainScene extends Phaser.Scene {
 
   override update(){
     this.player.update(this.keys);
+    this.enemies.forEach((enemy:any)=>enemy.update());
   }
 }
 

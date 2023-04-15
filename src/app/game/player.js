@@ -328,7 +328,5 @@ export default class Player extends MatterEntity{
           }
         })
       }
-      //todo disable pickaxe when fainted, or use 2 to bring out pick axe
-      //disable setflipX on fainated
-      //setup whirlwind!
+   
 }
