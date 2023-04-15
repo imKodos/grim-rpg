@@ -70,7 +70,7 @@ export default class Enemy extends MatterEntity{
         if(isMoving){
             this.anims.play(`${this.name}_walk`,true);
         }else{
-            this.anims.play(`${this.name}_idle`,true);as
+            this.anims.play(`${this.name}_idle`,true);
         }
     }
 }
