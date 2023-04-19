@@ -15,8 +15,13 @@ todo:
 use ranger or wizard from https://superdark.itch.io/enchanted-forest-characters
 
    //todo disable pickaxe when fainted, or use 2 to bring out pick axe
-   //disable setflipX on fainated
+   //disable setflipX on fainated (see onDead)
    //setup whirlwind!
    //todo set up sword hits
-
+   //enemies can move you and you wont be able to attack -- fix that
+   //enemies will continue to move your dead body
+   //add in faint 
       
+
+git config --global user.name "Your Name"
+git config --global user.email "youremail@yourdomain.com"

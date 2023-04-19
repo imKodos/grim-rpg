@@ -12,7 +12,7 @@ export default class Player extends MatterEntity{
     // dust;
     constructor(data){
         let {scene,x,y,texture,frame}=data;
-        super({...data,health:2,drops:[],name:'player'});
+        super({...data,health:20,drops:[],name:'player'});
         this.touching =[];
         this.setBounce(0);
         this.setOrigin(0.5);
@@ -154,6 +154,10 @@ export default class Player extends MatterEntity{
       // }
 
     update(data) {
+      if(this.dead){
+        return;
+      }
+
       let isMoving = (Math.abs(this.velocity.x) > 0.1 || Math.abs(this.velocity.y) > 0.1)
       this.isAttacking = data.space.isDown; 
       this.isHarvesting = this.scene.input.activePointer.isDown && !isMoving;
@@ -316,7 +320,14 @@ export default class Player extends MatterEntity{
       }
 
       setPointerFlip(){
-        this.scene.input.on('pointermove', pointer =>  this.setFlipX(pointer.worldX < this.x));//fired on mouse move // remove for WW
+        this.scene.input.on('pointermove', pointer => {if(!this.dead) this.setFlipX(pointer.worldX < this.x)});//fired on mouse move // remove for WW
+      }
+
+      onDeath = ()=>{
+        this.anims.stop();
+        this.setTexture('items',0);
+        this.setOrigin(0.5);
+        this.spriteWeapon.destroy();
       }
 
       harvest(){

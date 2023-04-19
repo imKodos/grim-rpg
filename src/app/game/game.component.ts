@@ -86,7 +86,7 @@ class MainScene extends Phaser.Scene {
    this.map.getObjectLayer('Enemies').objects.forEach(enemy=> this.enemies.push(new Enemy({scene:this, enemy})));;
 
 
-   this.player = new Player({scene:this,x:100,y:100,texture:"player"});
+   this.player = new Player({scene:this,x:200,y:100,texture:"player"});
    this.player.setOrigin(0.51,0.7); //changes the center of the hitbox
 
   //  this.physics.world.setFPS(100);
