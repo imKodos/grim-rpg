@@ -4,6 +4,7 @@ import { PhaserMatterCollisionPlugin } from 'src/assets/phaser-matter-collision.
 import Enemy from './Enemy.js';
 import Player from './player.js';
 import Resource from './resource.js';
+import Pet from './Pet.js';
 
 @Component({
   selector: 'app-game',
@@ -47,6 +48,7 @@ export class GameComponent implements OnInit {
 
 class MainScene extends Phaser.Scene {
   private player!: Player;
+  private pet!: Pet;
   private keys!:any;
   private map!: Phaser.Tilemaps.Tilemap;
   private enemies!:any;
@@ -57,6 +59,7 @@ class MainScene extends Phaser.Scene {
   }
   preload() {
     Player.preload(this);
+    Pet.preload(this);
     Resource.preload(this);
     Enemy.preload(this);
     this.load.image('tiles', 'assets/tilesets/RPG Nature Tileset.png');
@@ -89,11 +92,14 @@ class MainScene extends Phaser.Scene {
    this.player = new Player({scene:this,x:200,y:100,texture:"player"});
    this.player.setOrigin(0.51,0.7); //changes the center of the hitbox
 
+   this.pet = new Pet({scene:this,x:300,y:200,texture:"pet"});
+
   //  this.physics.world.setFPS(100);
   }
 
   override update(){
     this.player.update(this.keys);
+    this.pet.update(this.player);
     this.enemies.forEach((enemy:any)=>enemy.update());
   }
 }
